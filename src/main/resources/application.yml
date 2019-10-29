@@ -1,0 +1,37 @@
+
+management:
+   endpoint:
+      health:
+         show-details: always
+      metrics:
+         enabled: false
+      prometheus:
+         enabled: true
+   metrics: 
+      export:
+         prometheus:
+            enabled: true
+         enabled: false
+   endpoints: 
+      web:
+         exposure:
+            include: '*'
+spring:
+   application: 
+      name: zuul
+   cloud:
+       consul:
+          discovery:
+             instanceId: ${spring.application.name}:${random.value}
+             
+             
+ 
+zuul:
+   prefix: "/api"
+   ignored-services: "ª"
+   routes:
+      calc:
+         path: "/calc/**"
+         serviceId: calc
+         strip-prefix: false
+ 
